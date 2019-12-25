@@ -13,6 +13,8 @@ import {
 import { setAlert } from './alert';
 import { setAuthToken } from '../utils';
 
+export const hostName = 'http://localhost:3001';
+
 //Load User
 export const loadUser = () => async (dispatch) => {
 	if (localStorage.getItem('token')) {
@@ -20,7 +22,7 @@ export const loadUser = () => async (dispatch) => {
 	}
 
 	try {
-		const result = await axios.get('/api/auth');
+		const result = await axios.get(hostName + '/api/auth');
 
 		dispatch({ type: USER_LOADED, payload: result.data });
 	} catch (error) {
@@ -40,7 +42,7 @@ export const register = ({ name, email, password }) => async (dispatch) => {
 
 	const body = JSON.stringify({ name, email, password });
 	try {
-		const result = await axios.post('/api/users', body, config);
+		const result = await axios.post(hostName + '/api/users', body, config);
 		dispatch({ type: REGISTER_SUCCESS, payload: { token: result.data } });
 		dispatch(loadUser());
 	} catch (error) {
@@ -62,7 +64,7 @@ export const login = ({ email, password }) => async (dispatch) => {
 
 	const body = JSON.stringify({ email, password });
 	try {
-		const result = await axios.post('/api/auth', body, config);
+		const result = await axios.post(hostName + '/api/auth', body, config);
 		console.log(result);
 		dispatch({ type: LOGIN_SUCCESS, payload: { token: result.data } });
 		dispatch(loadUser());

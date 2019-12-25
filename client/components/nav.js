@@ -1,54 +1,29 @@
 import React from 'react';
 import Link from 'next/link';
 
-const links = [
-	{ href: '/signup', label: 'Sign Up' },
-	{ href: 'https://github.com/zeit/next.js', label: 'GitHub' }
-].map((link) => {
+const links = [ { href: '/signup', label: 'Sign Up' }, { href: '/login', label: 'Login' } ].map((link) => {
 	link.key = `nav-link-${link.href}-${link.label}`;
 	return link;
 });
 
 const Nav = () => (
 	<nav>
-		<ul>
-			<li>
+		<ul className="nav">
+			<li className="nav-item">
 				<Link href="/">
-					<a>Home</a>
+					<a className="nav-link">Home</a>
 				</Link>
 			</li>
 			{links.map(({ key, href, label }) => (
-				<Link href={href} key={key}>
-					<a>{label}</a>
-				</Link>
+				<li key={key} className="nav-item">
+					<Link href={href}>
+						<a className="nav-link">{label}</a>
+					</Link>
+				</li>
 			))}
 		</ul>
 
-		<style jsx>{`
-			:global(body) {
-				margin: 0;
-				font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir, Helvetica, sans-serif;
-			}
-			nav {
-				text-align: center;
-			}
-			ul {
-				display: flex;
-				justify-content: space-between;
-			}
-			nav > ul {
-				padding: 4px 16px;
-			}
-			li {
-				display: flex;
-				padding: 6px 8px;
-			}
-			a {
-				color: #067df7;
-				text-decoration: none;
-				font-size: 13px;
-			}
-		`}</style>
+		{/* <style jsx>{}</style> */}
 	</nav>
 );
 

@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
 import { register } from '../action/auth';
 import MyLayOut from '../components/MyLayOut';
 const SignUp = ({ isAuthenticated, register }) => {
+	const Router = useRouter();
+	useEffect(
+		() => {
+			if (isAuthenticated) {
+				Router.push('/');
+			}
+		},
+		[ isAuthenticated ]
+	);
+
 	const [ formData, setFromData ] = useState({
 		name: '',
 		email: '',

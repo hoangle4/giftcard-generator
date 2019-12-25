@@ -11,6 +11,7 @@ class MyApp extends App {
 
 		return { pageProps };
 	}
+
 	render() {
 		const { store, pageProps, Component } = this.props;
 		return (
