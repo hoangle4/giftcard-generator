@@ -1,0 +1,23 @@
+{
+	"development": {
+		"username": "saiylcwdecutuv",
+		"password": "09bc5866333978a8efc676ee66192d7b6f78c8acdb2825cb195573f3b1e87920",
+		"database": "dafa55naj2kgt9",
+		"host": "ec2-54-235-250-38.compute-1.amazonaws.com",
+		"dialect": "postgres",
+		"ssl": "true",
+		"port": "5432"
+	},
+	"test": {
+		"username": "root",
+		"password": null,
+		"database": "testdb",
+		"host": "localhost",
+		"dialect": "postgres",
+		"logging": false
+	},
+	"production": {
+		"use_env_variable": "JAWSDB_URL",
+		"dialect": "postgres"
+	}
+}
