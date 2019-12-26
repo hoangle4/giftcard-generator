@@ -46,8 +46,8 @@ const Home = ({ isAuthenticated, loadUser }) => {
 
 			<Nav />
 
-			<div className="hero">
-				<h1 className="title">Welcome to Next.js!</h1>
+			<div className="jumbotron">
+				<h1 className="text-center">Gift Generator for small Business!</h1>
 			</div>
 
 			<style jsx>{`
