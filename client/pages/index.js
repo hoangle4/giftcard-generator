@@ -5,6 +5,7 @@ import MyLayOut from '../components/MyLayOut';
 import { connect } from 'react-redux';
 import { setAuthToken } from '../utils';
 import { loadUser } from '../action/auth';
+import { AddBizModal } from '../components/AddBizModal';
 const Home = ({ isAuthenticated, loadUser }) => {
 	useEffect(
 		() => {
@@ -48,8 +49,15 @@ const Home = ({ isAuthenticated, loadUser }) => {
 
 			<div className="jumbotron">
 				<h1 className="text-center">Gift Generator for small Business!</h1>
+				<hr className="my-4" />
+				<p>We provide free gift card management system for small businesses.</p>
+				{isAuthenticated && (
+					<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+						Add a Location
+					</button>
+				)}
 			</div>
-
+			<AddBizModal />
 			<style jsx>{`
 				.hero {
 					width: 100%;

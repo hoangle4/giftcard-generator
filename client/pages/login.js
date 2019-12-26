@@ -14,12 +14,12 @@ const Login = ({ isAuthenticated, login }) => {
 		[ isAuthenticated ]
 	);
 
-	const [ formData, setFromData ] = useState({
+	const [ formData, setFormData ] = useState({
 		email: '',
 		password: ''
 	});
 
-	const handleOnInputChange = (e) => setFromData({ ...formData, [e.target.name]: e.target.value });
+	const handleOnInputChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
 	const handleSignUp = async (e) => {
 		e.preventDefault();
