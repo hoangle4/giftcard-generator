@@ -1,3 +1,4 @@
+import Alert from './Alert'
 const layoutStyle = {
 	margin: 20,
 	padding: 20,
@@ -5,7 +6,12 @@ const layoutStyle = {
 };
 
 const Layout = ({ children }) => {
-	return <div style={layoutStyle}>{children}</div>;
+	return (
+		<div style={layoutStyle}>
+			<Alert />
+			{children}
+		</div>
+	);
 };
 
 export default Layout;

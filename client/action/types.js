@@ -16,3 +16,5 @@ export const DELETE_ACCOUNT = 'DELETE_ACCOUNT';
 //Location types
 export const LOCATION_CREATED = 'LOCATION_CREATED';
 export const LOCATION_FAILED = 'LOCATION_FAILED';
+export const GET_LOCATION = 'GET_LOCATION';
+export const GET_LOCATIONS = 'GET_LOCATIONS';

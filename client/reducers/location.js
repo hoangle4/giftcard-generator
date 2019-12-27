@@ -1,6 +1,6 @@
 import {
-LOCATION_CREATED, LOCATION_FAILED
-} from '../action/types';
+LOCATION_CREATED, LOCATION_FAILED, GET_LOCATIONS,GET_LOCATION
+} from '../action/types'; 
 const initialState = {
 	location: {},
 	locations:[],
@@ -17,11 +17,24 @@ export default function(state = initialState, action) {
 				loading: false,
 				location: payload
 			};
+		case GET_LOCATION:
+			return {
+				...state,
+				loading:false,
+				location:payload
+			}
+		case GET_LOCATIONS:
+			return {
+				...state,
+				loading:false,
+				locations:payload
+			}
 		case LOCATION_FAILED:
 			return {
 				...state,
 				loading:false,
-				location:{}
+				location:{},
+				locations:[],
 			}
 		default:
 			return state;
