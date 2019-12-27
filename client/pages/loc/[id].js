@@ -3,7 +3,20 @@ import {getLocation} from '../../action/location';
 import fetch from 'isomorphic-unfetch';
 
 
-const Loc = () => {
+const Loc = ({
+  id,
+  businessName,
+  address,
+  city,
+  state,
+  zipcode,
+  phoneNumber,
+  email,
+  avatar,
+  admin,
+  createdAt,
+  updatedAt
+}) => {
     return (
       <div> Location </div>
     );
