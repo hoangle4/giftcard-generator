@@ -1,6 +1,7 @@
 import { useState } from 'react';
-
-export const AddBizModal = () => {
+import {connect} from 'react-redux'
+import {createLocation} from '../action/location'
+const AddBizModal = ({createLocation, user:{id}}) => {
 	const [ formData, setFormData ] = useState({
 		businessName: '',
 		address: '',
@@ -128,3 +129,9 @@ export const AddBizModal = () => {
 		</div>
 	);
 };
+	
+const mapStateToProps = state => ({
+	user: state.auth.user
+});
+
+export default connect(mapStateToProps, {createLocation})(AddBizModal);

@@ -12,3 +12,7 @@ export const LOG_OUT = 'LOG_OUT';
 
 //Delete Account
 export const DELETE_ACCOUNT = 'DELETE_ACCOUNT';
+
+//Location types
+export const LOCATION_CREATED = 'LOCATION_CREATED';
+export const LOCATION_FAILED = 'LOCATION_FAILED';

@@ -5,7 +5,7 @@ import MyLayOut from '../components/MyLayOut';
 import { connect } from 'react-redux';
 import { setAuthToken } from '../utils';
 import { loadUser } from '../action/auth';
-import { AddBizModal } from '../components/AddBizModal';
+import  AddBizModal  from '../components/AddBizModal';
 const Home = ({ isAuthenticated, loadUser }) => {
 	useEffect(
 		() => {

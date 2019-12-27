@@ -24,7 +24,7 @@ const Login = ({ isAuthenticated, login }) => {
 	const handleSignUp = async (e) => {
 		e.preventDefault();
 		await login(formData);
-		isAuthenticated && setFromData({ ...formData, name: '', email: '', password: '' });
+		isAuthenticated && setFormData({ ...formData, name: '', email: '', password: '' });
 	};
 
 	const { email, password } = formData;
