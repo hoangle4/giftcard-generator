@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {connect} from 'react-redux'
 import {createLocation} from '../action/location'
-const AddBizModal = ({createLocation, user:{id}}) => {
+const AddBizModal = ({createLocation}) => {
 	const [ formData, setFormData ] = useState({
 		businessName: '',
 		address: '',
@@ -15,6 +15,23 @@ const AddBizModal = ({createLocation, user:{id}}) => {
 	const { businessName, address, city, state, zipcode, phoneNumber, email } = formData;
 
 	const handleOnInputChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+	
+	const handleAddLocation = async e => {
+		e.preventDefault();
+		
+		await createLocation(formData);
+		
+		setFormData({
+			...formData, 		
+			businessName: '',
+			address: '',
+			city: '',
+			state: '',
+			zipcode: '',
+			phoneNumber: '',
+			email: ''})
+	};
+	
 	return (
 		<div
 			className="modal fade"
@@ -120,7 +137,7 @@ const AddBizModal = ({createLocation, user:{id}}) => {
 						<button type="button" className="btn btn-secondary" data-dismiss="modal">
 							Close
 						</button>
-						<button type="button" className="btn btn-primary">
+						<button type="button" className="btn btn-primary" onClick={handleAddLocation}>
 							Save
 						</button>
 					</div>
@@ -129,9 +146,5 @@ const AddBizModal = ({createLocation, user:{id}}) => {
 		</div>
 	);
 };
-	
-const mapStateToProps = state => ({
-	user: state.auth.user
-});
 
-export default connect(mapStateToProps, {createLocation})(AddBizModal);
+export default connect(null, {createLocation})(AddBizModal);

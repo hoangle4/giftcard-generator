@@ -17,6 +17,12 @@ export default function(state = initialState, action) {
 				loading: false,
 				location: payload
 			};
+		case LOCATION_FAILED:
+			return {
+				...state,
+				loading:false,
+				location:{}
+			}
 		default:
 			return state;
 	}

@@ -36,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		avatar: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: true
 		},
 		admin: {
 			type: DataTypes.UUID,
