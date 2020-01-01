@@ -9,10 +9,8 @@ const jwt = require('jsonwebtoken');
 //@desc   Get Auth user
 //@access Private
 router.get('/', auth, async (req, resp) => {
-	console.log(req.user.id);
 	try {
 		const user = await models.User.findByPk(req.user.id);
-		console.log('a');
 		resp.json(user);
 	} catch (error) {
 		console.error(error);

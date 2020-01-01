@@ -1,10 +1,8 @@
-import {
-LOCATION_CREATED, LOCATION_FAILED, GET_LOCATIONS,GET_LOCATION
-} from '../action/types'; 
+import { LOCATION_CREATED, LOCATION_FAILED, GET_LOCATIONS, GET_LOCATION, CLEAR_LOCATIONS } from '../action/types';
 const initialState = {
 	location: {},
-	locations:[],
-	loading: true,
+	locations: [],
+	loading: true
 };
 
 export default function(state = initialState, action) {
@@ -20,22 +18,29 @@ export default function(state = initialState, action) {
 		case GET_LOCATION:
 			return {
 				...state,
-				loading:false,
-				location:payload
-			}
+				loading: false,
+				location: payload
+			};
 		case GET_LOCATIONS:
 			return {
 				...state,
-				loading:false,
-				locations:payload
-			}
+				loading: false,
+				locations: payload
+			};
+		case CLEAR_LOCATIONS:
+			return {
+				...state,
+				loading: false,
+				locations: [],
+				location: {}
+			};
 		case LOCATION_FAILED:
 			return {
 				...state,
-				loading:false,
-				location:{},
-				locations:[],
-			}
+				loading: false,
+				location: {},
+				locations: []
+			};
 		default:
 			return state;
 	}

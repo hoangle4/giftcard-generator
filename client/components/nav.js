@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { connect } from 'react-redux';
-
-const Nav = ({ isAuthenticated }) => {
+import { logout } from '../action/auth';
+const Nav = ({ isAuthenticated, logout }) => {
 	const links = !isAuthenticated
 		? [ { href: '/signup', label: 'Sign Up' }, { href: '/login', label: 'Login' } ]
-		: [ { href: '/signout', label: 'Sign Out' } ];
+		: [ { href: '#!', label: 'Sign Out', action: logout } ];
 
 	return (
 		<nav>
@@ -14,10 +14,12 @@ const Nav = ({ isAuthenticated }) => {
 						<a className="nav-link text-white">Home</a>
 					</Link>
 				</li>
-				{links.map(({ href, label }, index) => (
+				{links.map(({ href, label, action }, index) => (
 					<li key={index} className="nav-item ">
 						<Link href={href}>
-							<a className="nav-link text-white">{label}</a>
+							<a className="nav-link text-white" onClick={action && action}>
+								{label}
+							</a>
 						</Link>
 					</li>
 				))}
@@ -32,4 +34,4 @@ const mapStateToProps = (state) => ({
 	isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps)(Nav);
+export default connect(mapStateToProps, { logout })(Nav);

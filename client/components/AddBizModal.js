@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import {connect} from 'react-redux'
-import {createLocation} from '../action/location'
-const AddBizModal = ({createLocation}) => {
+import { connect } from 'react-redux';
+import { createLocation } from '../action/location';
+const AddBizModal = ({ createLocation }) => {
 	const [ formData, setFormData ] = useState({
 		businessName: '',
 		address: '',
@@ -15,23 +15,24 @@ const AddBizModal = ({createLocation}) => {
 	const { businessName, address, city, state, zipcode, phoneNumber, email } = formData;
 
 	const handleOnInputChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
-	
-	const handleAddLocation = async e => {
+
+	const handleAddLocation = async (e) => {
 		e.preventDefault();
-		
-		await createLocation(formData);
-		
+
+		createLocation(formData);
+		e.target.previousSibling.click();
 		setFormData({
-			...formData, 		
+			...formData,
 			businessName: '',
 			address: '',
 			city: '',
 			state: '',
 			zipcode: '',
 			phoneNumber: '',
-			email: ''})
+			email: ''
+		});
 	};
-	
+
 	return (
 		<div
 			className="modal fade"
@@ -147,4 +148,4 @@ const AddBizModal = ({createLocation}) => {
 	);
 };
 
-export default connect(null, {createLocation})(AddBizModal);
+export default connect(null, { createLocation })(AddBizModal);

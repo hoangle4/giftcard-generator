@@ -1,18 +1,8 @@
 import axios from 'axios';
-import {
-	REGISTER_SUCCESS,
-	REGISTER_FAIL,
-	USER_LOADED,
-	AUTH_ERROR,
-	LOGIN_FAIL,
-	LOGIN_SUCCESS,
-	LOG_OUT,
-	// SET_ALERT,
-	CLEAR_PROFILE
-} from './types';
+import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_FAIL, LOGIN_SUCCESS, LOG_OUT } from './types';
 import { setAlert } from './alert';
 import { setAuthToken } from '../utils';
-
+import { clearLocations } from './location';
 export const hostName = 'http://localhost:3001';
 
 //Load User
@@ -38,7 +28,6 @@ export const register = ({ name, email, password }) => async (dispatch) => {
 			'Content-Type': 'application/json'
 		}
 	};
-	console.log(name);
 
 	const body = JSON.stringify({ name, email, password });
 	try {
@@ -65,7 +54,6 @@ export const login = ({ email, password }) => async (dispatch) => {
 	const body = JSON.stringify({ email, password });
 	try {
 		const result = await axios.post(hostName + '/api/auth', body, config);
-		console.log(result);
 		dispatch({ type: LOGIN_SUCCESS, payload: { token: result.data } });
 		dispatch(loadUser());
 		dispatch(setAlert('Login Successful', 'success', 2000));
@@ -83,4 +71,5 @@ export const login = ({ email, password }) => async (dispatch) => {
 
 export const logout = () => (dispatch) => {
 	dispatch({ type: LOG_OUT });
+	dispatch(clearLocations());
 };

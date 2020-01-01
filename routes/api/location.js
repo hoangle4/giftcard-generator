@@ -19,11 +19,12 @@ router.post(
 		const { businessName, address, city, state, zipcode, phoneNumber, email } = req.body;
 
 		try {
-			let business = await models.BizLocation.findOne({where:{
-			[Op.or]: [{email:email}, {phoneNumber:phoneNumber}]
-			}});
-			console.log(business);
-			if(business) return resp.status(403).json({msg: 'Business Already Exsist'});
+			let business = await models.BizLocation.findOne({
+				where: {
+					[Op.or]: [ { email: email }, { phoneNumber: phoneNumber } ]
+				}
+			});
+			if (business) return resp.status(403).json({ msg: 'Business Already Exsist' });
 
 			business = await models.BizLocation.create({
 				businessName,
@@ -33,7 +34,7 @@ router.post(
 				zipcode,
 				phoneNumber,
 				email,
-				admin:req.user.id
+				admin: req.user.id
 			});
 
 			resp.json(business);
@@ -44,23 +45,28 @@ router.post(
 	}
 );
 
-router.get('/', auth, async(req,resp) => {
+router.get('/', auth, async (req, resp) => {
 	try {
-		const businesses = await models.BizLocation.findAll({});
-		resp.json(businesses)
+		const businesses = await models.BizLocation.findAll({
+			where: {
+				admin: req.user.id
+			}
+		});
+		console.log(businesses);
+		resp.json(businesses);
 	} catch (err) {
 		console.log(err);
-		resp.status(500).json({msg:'SERVER ERROR'})
+		resp.status(500).json({ msg: 'SERVER ERROR' });
 	}
 });
 
-router.get('/:id', auth, async(req,resp) => {
+router.get('/:id', auth, async (req, resp) => {
 	try {
 		const business = await models.BizLocation.findByPk(req.params.id);
-		resp.json(business)
+		resp.json(business);
 	} catch (err) {
 		console.log(err);
-		resp.status(500).json({msg:'SERVER ERROR'})
+		resp.status(500).json({ msg: 'SERVER ERROR' });
 	}
 });
 

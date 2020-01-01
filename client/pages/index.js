@@ -5,24 +5,23 @@ import MyLayOut from '../components/MyLayOut';
 import { connect } from 'react-redux';
 import { setAuthToken } from '../utils';
 import { loadUser } from '../action/auth';
-import { getLocations } from '../action/location';
-import  AddBizModal  from '../components/AddBizModal';
-import  LocationList  from '../components/LocationList';
-const Home = ({ isAuthenticated, locations, loadUser, getLocations }) => {
+import { getLocations, clearLocations } from '../action/location';
+import AddBizModal from '../components/AddBizModal';
+import LocationList from '../components/LocationList';
+const Home = ({ isAuthenticated, locations, location, loadUser, getLocations }) => {
 	useEffect(
 		() => {
-			if(isAuthenticated) {
-				getLocations();
-				return;
-			};
-
+			if (isAuthenticated) {
+				locations.length === 0 && getLocations();
+			} else if (!isAuthenticated && locations.length > 0) {
+				clearLocations();
+			}
 			if (localStorage.getItem('token')) {
 				setAuthToken(localStorage.getItem('token'));
 				loadUser();
-			};
-
+			}
 		},
-		[ isAuthenticated ]
+		[ location, isAuthenticated ]
 	);
 
 	return (
@@ -67,22 +66,23 @@ const Home = ({ isAuthenticated, locations, loadUser, getLocations }) => {
 			</div>
 			{locations.length === 0 ? (
 				<div className="media">
-				  <div className="media-body">
-				    <h5 className="mt-0">Locations Not Found, Please add new Location</h5>
-				  </div>
+					<div className="media-body">
+						<h5 className="mt-0">Locations Not Found, Please add new Location</h5>
+					</div>
 				</div>
-			) : (locations.map(location =><LocationList key={location.id} {...location} />))}
-
+			) : (
+				locations.map((location) => <LocationList key={location.id} {...location} />)
+			)}
 
 			<AddBizModal />
-
 		</MyLayOut>
 	);
 };
 
 const mapStateToProps = (state) => ({
 	isAuthenticated: state.auth.isAuthenticated,
-	locations:state.location.locations
+	locations: state.location.locations,
+	location: state.location.location
 });
 
 export default connect(mapStateToProps, { loadUser, getLocations })(Home);
