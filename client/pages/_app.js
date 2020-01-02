@@ -6,6 +6,8 @@ import App from 'next/app';
 import withRedux from 'next-redux-wrapper';
 import Head from 'next/head';
 import MyLayOut from '../components/MyLayOut';
+import Nav from '../components/nav';
+
 class MyApp extends App {
 	static async getInitialProps({ Component, ctx }) {
 		const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
@@ -43,6 +45,8 @@ class MyApp extends App {
 					/>
 				</Head>
 				<MyLayOut>
+					<Nav />
+
 					<Component {...pageProps} />
 				</MyLayOut>
 			</Provider>

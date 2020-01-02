@@ -41,4 +41,19 @@ router.post('/', auth, async (req, resp) => {
 	}
 });
 
+router.get('/', auth, async (req, resp) => {
+	try {
+		const { location } = req.query;
+		const gifts = await models.Gift.findAll({
+			where: {
+				location: location
+			}
+		});
+		resp.json(gifts);
+	} catch (error) {
+		console.log(error.message);
+		resp.status(500).json('server error');
+	}
+});
+
 module.exports = router;

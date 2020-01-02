@@ -1,5 +1,4 @@
 import { useEffect, Fragment } from 'react';
-import Nav from '../components/nav';
 
 import { connect } from 'react-redux';
 import { setAuthToken } from '../utils';
@@ -25,8 +24,6 @@ const Home = ({ isAuthenticated, locations, loadUser, getLocations }) => {
 
 	return (
 		<Fragment>
-			<Nav />
-
 			<div className="jumbotron">
 				<h1 className="text-center">Gift Generator for small Business!</h1>
 				<hr className="my-4" />
