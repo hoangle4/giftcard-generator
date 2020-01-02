@@ -46,7 +46,7 @@ router.post(
 
 			user = await models.User.create(newUser);
 
-			const payload = { user: { id: user._id } };
+			const payload = { user: { id: user.id } };
 
 			jwt.sign(payload, process.env.JWT_SECRET, (err, token) => {
 				if (err) throw err;

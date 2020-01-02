@@ -12,9 +12,8 @@ module.exports = function(req, resp, next) {
 
 	try {
 		const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
 		req.user = decoded.user;
-		console.log(decoded);
+
 		next();
 	} catch (error) {
 		resp.status(401).json({ msg: 'Authorization is not valid' });

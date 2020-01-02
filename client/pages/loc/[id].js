@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { getLocation } from '../../action/location';
 import fetch from 'isomorphic-unfetch';
+import AddGiftModal from '../../components/AddGiftModal';
 
 const Loc = ({
 	id,
@@ -27,9 +28,17 @@ const Loc = ({
 			</p>
 			<hr className="my-4" />
 			<p>Established: {createdAt}</p>
-			<a className="btn btn-primary btn-lg" href="#!" role="button">
+			<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
 				New Gift Certificate
-			</a>
+			</button>
+			<AddGiftModal
+				location={id}
+				businessName={businessName}
+				address={address}
+				city={city}
+				state={state}
+				zipcode={zipcode}
+			/>
 		</div>
 	);
 };

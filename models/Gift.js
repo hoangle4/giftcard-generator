@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-	const BizLocation = sequelize.define('BizLocation', {
+	const Gift = sequelize.define('Gift', {
 		id: {
 			type: DataTypes.UUID,
 			defaultValue: DataTypes.UUIDV4,
@@ -26,23 +26,29 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.INTEGER,
 			allowNull: false
 		},
-		phoneNumber: {
-			type: DataTypes.BIGINT,
-			allowNull: false
+		phone: {
+			type: DataTypes.STRING
 		},
 		email: {
 			type: DataTypes.STRING,
 			allowNull: false
 		},
-		avatar: {
-			type: DataTypes.STRING,
-			allowNull: true
+		created: {
+			type: DataTypes.STRING
 		},
-		admin: {
+		location: {
 			type: DataTypes.UUID,
+			allowNull: false
+		},
+		voucher: {
+			type: DataTypes.STRING,
+			allowNull: false
+		},
+		value: {
+			type: DataTypes.BIGINT,
 			allowNull: false
 		}
 	});
 
-	return BizLocation;
+	return Gift;
 };

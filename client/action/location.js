@@ -7,6 +7,7 @@ export const createLocation = (formData) => async (dispatch) => {
 	try {
 		const response = await axios.post(hostName + '/api/location', formData);
 		dispatch({ type: LOCATION_CREATED, payload: response.data });
+		dispatch(getLocations());
 	} catch (err) {
 		console.log(err.response.data.msg);
 		dispatch({ type: LOCATION_FAILED, payload: err.response.data.msg });

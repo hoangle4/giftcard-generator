@@ -52,7 +52,6 @@ router.get('/', auth, async (req, resp) => {
 				admin: req.user.id
 			}
 		});
-		console.log(businesses);
 		resp.json(businesses);
 	} catch (err) {
 		console.log(err);

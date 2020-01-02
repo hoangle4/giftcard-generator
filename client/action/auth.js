@@ -13,7 +13,7 @@ export const loadUser = () => async (dispatch) => {
 
 	try {
 		const result = await axios.get(hostName + '/api/auth');
-
+		console.log(result);
 		dispatch({ type: USER_LOADED, payload: result.data });
 	} catch (error) {
 		dispatch({ type: AUTH_ERROR });

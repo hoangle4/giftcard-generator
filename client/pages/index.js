@@ -7,7 +7,7 @@ import { loadUser } from '../action/auth';
 import { getLocations, clearLocations } from '../action/location';
 import AddBizModal from '../components/AddBizModal';
 import LocationList from '../components/LocationList';
-const Home = ({ isAuthenticated, locations, location, loadUser, getLocations }) => {
+const Home = ({ isAuthenticated, locations, loadUser, getLocations }) => {
 	useEffect(
 		() => {
 			if (isAuthenticated) {
@@ -20,7 +20,7 @@ const Home = ({ isAuthenticated, locations, location, loadUser, getLocations }) 
 				loadUser();
 			}
 		},
-		[ location, isAuthenticated ]
+		[ isAuthenticated ]
 	);
 
 	return (
@@ -54,8 +54,7 @@ const Home = ({ isAuthenticated, locations, location, loadUser, getLocations }) 
 
 const mapStateToProps = (state) => ({
 	isAuthenticated: state.auth.isAuthenticated,
-	locations: state.location.locations,
-	location: state.location.location
+	locations: state.location.locations
 });
 
 export default connect(mapStateToProps, { loadUser, getLocations })(Home);
