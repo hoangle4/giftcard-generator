@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { getLocation } from '../../action/location';
 import fetch from 'isomorphic-unfetch';
-import Router from 'next/router';
 
 const Loc = ({
 	id,
@@ -17,7 +16,22 @@ const Loc = ({
 	createdAt,
 	updatedAt
 }) => {
-	return <div> Location </div>;
+	return (
+		<div className="jumbotron">
+			<h1 className="display-4">{businessName}</h1>
+			<p>
+				{address}
+				{city}
+				{state}
+				{zipcode}
+			</p>
+			<hr className="my-4" />
+			<p>Established: {createdAt}</p>
+			<a className="btn btn-primary btn-lg" href="#!" role="button">
+				New Gift Certificate
+			</a>
+		</div>
+	);
 };
 
 Loc.getInitialProps = async ({ res, query, isServer }) => {
@@ -41,7 +55,7 @@ Loc.getInitialProps = async ({ res, query, isServer }) => {
 	const result = await response.json();
 	console.log(result);
 
-	return { result };
+	return result;
 };
 
 export default connect(null, { getLocation })(Loc);
