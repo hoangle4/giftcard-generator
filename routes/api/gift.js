@@ -12,7 +12,7 @@ router.post('/', auth, async (req, resp) => {
 		const voucher = voucherCode.generate({
 			prefix: 'lacenails-',
 			pattern: '#####-#####',
-			postfix: '-2020'
+			postfix: `-` + new Date().getFullYear() + `` + new Date().getMonth() + 1 + `` + new Date().getDate()
 		});
 
 		const { location, businessName, address, city, state, zipcode, phone, email, value } = req.body;
