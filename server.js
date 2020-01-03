@@ -5,10 +5,10 @@ const routes = require('./routes');
 const cors = require('cors');
 const app = express();
 const db = require('./models');
-const fileupload = require('express-fileupload');
+// const fileupload = require('express-fileupload');
 
 const PORT = process.env.PORT || 3001;
-const allowedOrigins = [ 'http://localhost:3000', 'https://master.dnsy5i4as8f52.amplifyapp.com' ];
+// const allowedOrigins = [ 'http://localhost:3000', 'https://master.dnsy5i4as8f52.amplifyapp.com' ];
 app.use(
 	cors({
 		// origin: function(origin, callback) {
@@ -29,7 +29,7 @@ app.use(
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(fileupload());
+// app.use(fileupload());
 
 if (process.env.NODE_ENV !== 'production') {
 	require('dotenv').config();

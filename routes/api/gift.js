@@ -8,9 +8,6 @@ const voucherCode = require('voucher-code-generator');
 //@desc   CREATE gift certificate
 //@access Private
 router.post('/', auth, async (req, resp) => {
-	const { location, businessName, address, city, state, zipcode, phoneNumer, email, value } = req.body;
-	const { id } = req.user;
-
 	try {
 		const voucher = voucherCode.generate({
 			prefix: 'lacenails-',
@@ -18,8 +15,11 @@ router.post('/', auth, async (req, resp) => {
 			postfix: '-2020'
 		});
 
-		const newGift = {
-			phone: phoneNumer,
+		const { location, businessName, address, city, state, zipcode, phone, email, value } = req.body;
+		const { id } = req.user;
+
+		const gift = await models.Gift.create({
+			phone,
 			location,
 			businessName,
 			address,
@@ -30,9 +30,7 @@ router.post('/', auth, async (req, resp) => {
 			created: id,
 			voucher: voucher[0],
 			value: value
-		};
-		// console.log(newGift);
-		const gift = await models.Gift.create(newGift);
+		});
 
 		resp.json(gift);
 	} catch (error) {

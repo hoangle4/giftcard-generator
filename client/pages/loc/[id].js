@@ -1,5 +1,6 @@
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getLocation } from '../../action/location';
+import { getGifts } from '../../action/gift';
 import fetch from 'isomorphic-unfetch';
 import AddGiftModal from '../../components/AddGiftModal';
 import { GiftTable } from '../../components/GiftTable';
@@ -17,8 +18,13 @@ const Loc = ({
 	admin,
 	createdAt,
 	updatedAt,
-	gifts
+	gifts,
+	getGifts
 }) => {
+	useEffect(() => {
+		gifts.length === 0 && getGifts(id);
+	}, []);
+
 	return (
 		<div>
 			<div className="jumbotron">
@@ -67,17 +73,21 @@ Loc.getInitialProps = async ({ res, query, isServer }) => {
 		}
 	});
 	const result1 = await response1.json();
-	const response2 = await fetch(`http://localhost:3001/api/gift?location=${result1.id}`, {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json',
-			Accept: 'application/json',
-			't-auth-token': token
-		}
-	});
-	const result2 = await response2.json();
-	console.log({ ...result1, gifts: result2 });
-	return { ...result1, gifts: result2 };
+	// const response2 = await fetch(`http://localhost:3001/api/gift?location=${result1.id}`, {
+	// 	method: 'GET',
+	// 	headers: {
+	// 		'Content-Type': 'application/json',
+	// 		Accept: 'application/json',
+	// 		't-auth-token': token
+	// 	}
+	// });
+	// const result2 = await response2.json();
+	// console.log({ ...result1, gifts: result2 });
+	return result1;
 };
 
-export default connect(null, { getLocation })(Loc);
+const mapStateToProps = (state) => ({
+	gifts: state.gift.gifts
+});
+
+export default connect(mapStateToProps, { getGifts })(Loc);

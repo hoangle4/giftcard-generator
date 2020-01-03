@@ -4,10 +4,19 @@ import { setAlert } from './alert';
 export const hostName = 'http://localhost:3001';
 
 export const createGift = (formData) => async (dispatch) => {
+	const config = {
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	};
+
+	const body = JSON.stringify(formData);
 	try {
-		const response = await axios.post(hostName + '/api/gift', formData);
+		const response = await axios.post(hostName + '/api/gift', body, config);
 		dispatch({ type: GIFT_CREATED, payload: response.data });
+
 		dispatch(setAlert('Gift Created', 'success', 3000));
+		dispatch(getGifts(response.data.location));
 	} catch (err) {
 		console.log(err);
 		dispatch({ type: GIFT_FAILED });
@@ -17,6 +26,7 @@ export const createGift = (formData) => async (dispatch) => {
 export const getGifts = (location) => async (dispatch) => {
 	try {
 		const response = await axios.get(hostName + '/api/gift?location=' + location);
+
 		dispatch({ type: GET_GIFTS, payload: response.data });
 		dispatch(setAlert('Gift Loaded', 'success', 3000));
 	} catch (err) {

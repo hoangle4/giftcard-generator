@@ -5,10 +5,10 @@ const AddGiftModal = ({ createGift, location, businessName, address, city, state
 	const [ formData, setFormData ] = useState({
 		value: '',
 		email: '',
-		phoneNumber: ''
+		phone: ''
 	});
 
-	const { value, phoneNumber, email } = formData;
+	const { value, phone, email } = formData;
 
 	const handleOnInputChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -19,7 +19,7 @@ const AddGiftModal = ({ createGift, location, businessName, address, city, state
 		e.target.previousSibling.click();
 		setFormData({
 			value: '',
-			phoneNumber: '',
+			phone: '',
 			email: ''
 		});
 	};
@@ -58,14 +58,14 @@ const AddGiftModal = ({ createGift, location, businessName, address, city, state
 								/>
 							</div>
 							<div className="form-group">
-								<label htmlFor="phoneNumber">Phone Number</label>
+								<label htmlFor="phone">Phone Number</label>
 								<input
 									onChange={handleOnInputChange}
-									name="phoneNumber"
+									name="phone"
 									type="text"
 									className="form-control"
-									id="phoneNumber"
-									value={phoneNumber}
+									id="phone"
+									value={phone}
 								/>
 							</div>
 							<div className="form-group">

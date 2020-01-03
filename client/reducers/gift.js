@@ -1,4 +1,4 @@
-import { GIFT_CREATED, GIFT_FAILED } from '../action/types';
+import { GIFT_CREATED, GIFT_FAILED, GET_GIFTS } from '../action/types';
 const initialState = {
 	gift: {},
 	gifts: [],
@@ -14,6 +14,12 @@ export default function(state = initialState, action) {
 				...state,
 				loading: false,
 				gift: payload
+			};
+		case GET_GIFTS:
+			return {
+				...state,
+				loading: false,
+				gifts: payload
 			};
 		case GIFT_FAILED:
 			return {
