@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-module.exports = function(req, resp, next) {
+const User = require('../models').User;
+module.exports = async function(req, resp, next) {
 	// GET TOKEN FROM HEADER
 
 	const token = req.header('t-auth-token');
@@ -12,7 +13,8 @@ module.exports = function(req, resp, next) {
 
 	try {
 		const decoded = jwt.verify(token, process.env.JWT_SECRET);
-		req.user = decoded.user;
+		const user = await User.findByPk(decoded.user.id);
+		req.user = user;
 
 		next();
 	} catch (error) {

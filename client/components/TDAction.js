@@ -21,7 +21,7 @@ export const TDAction = () => {
 						Transactions
 					</a>
 					<a className="dropdown-item" href="#">
-						Re-send
+						Email
 					</a>
 					<div className="dropdown-divider" />
 					<a className="dropdown-item" href="#">

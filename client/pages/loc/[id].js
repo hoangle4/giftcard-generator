@@ -4,6 +4,7 @@ import { getGifts } from '../../action/gift';
 import fetch from 'isomorphic-unfetch';
 import AddGiftModal from '../../components/AddGiftModal';
 import { GiftTable } from '../../components/GiftTable';
+import { GiftWithBarcode } from '../../components/GiftWithBarcode';
 
 const Loc = ({
 	id,
@@ -49,6 +50,7 @@ const Loc = ({
 					zipcode={zipcode}
 				/>
 			</div>
+			<GiftWithBarcode />
 			<GiftTable gifts={gifts} />
 		</div>
 	);
