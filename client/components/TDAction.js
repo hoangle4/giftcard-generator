@@ -3,7 +3,7 @@ export const TDAction = () => {
 		<td>
 			<div className="btn-group">
 				<button type="button" className="btn btn-xs btn-dark">
-					Redeem
+					<i class="far fa-eye"></i>
 				</button>
 				<button
 					style={{ background: '#f2f2f2', border: '1px solid #343A40' }}
@@ -13,7 +13,10 @@ export const TDAction = () => {
 					aria-haspopup="true"
 					aria-expanded="false"
 				/>
-				<div className="dropdown-menu">
+				<div className="dropdown-menu mr-5">
+					<a className="dropdown-item" href="#">
+						Redeem
+					</a>
 					<a className="dropdown-item" href="#">
 						Reload
 					</a>
