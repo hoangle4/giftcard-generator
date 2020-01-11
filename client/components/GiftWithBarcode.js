@@ -1,17 +1,34 @@
 const Barcode = require('react-barcode');
 
- 
-
-export const GiftWithBarcode = () => {
-
+export const GiftWithBarcode = ({id, businessName, address, city, state, phone, zipcode, email, voucher, value, createdAt}) => {
+console.log(id.split('-').splice(0,1).join(''))
 	return (
-		<div className="card mb-3">
-		  <img src="..." className="card-img-top" alt="..."/>
-		  <div className="card-body">
-		    <h5 className="card-title">Card title</h5>
-		    <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-		    <Barcode value="lacenails-b8MPs-gucSy-2020012" width={1} height={75} />
-		    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+		<div className="modal" tabIndex="-1" role="dialog" id={`lacenails${id}`} aria-labelledby="exampleModalLabel">
+		  <div className="modal-dialog" role="document">
+		    <div className="modal-content">
+		      <div className="modal-header">
+		        <h5 className="modal-title">Gift Certificate</h5>
+		        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div className="modal-body">
+		        <div className="card mb-3">
+				    <Barcode value={voucher} width={1} height={75} className="card-img-top"/>
+				  <div className="card-body">
+				    <h5 className="card-title">{businessName}</h5>
+				    <p className="card-text">{address}</p>
+				    <p className="card-text">{city}, {state} {zipcode}</p>
+
+				    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+				  </div>
+				</div>
+		      </div>
+		      <div className="modal-footer">
+		        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" className="btn btn-primary">Save changes</button>
+		      </div>
+		    </div>
 		  </div>
 		</div>
 	);

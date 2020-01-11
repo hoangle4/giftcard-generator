@@ -1,9 +1,12 @@
-export const TDAction = () => {
+import {GiftWithBarcode} from './GiftWithBarcode';
+
+export const TDAction = (props) => {
+
 	return (
 		<td>
 			<div className="btn-group">
-				<button type="button" className="btn btn-xs btn-dark">
-					<i class="far fa-eye"></i>
+				<button type="button" className="btn btn-xs btn-dark" data-toggle="modal" data-target={`#lacenails${props.id}`}>
+					<i className="far fa-eye"></i>
 				</button>
 				<button
 					style={{ background: '#f2f2f2', border: '1px solid #343A40' }}
@@ -31,6 +34,7 @@ export const TDAction = () => {
 						Disable
 					</a>
 				</div>
+				<GiftWithBarcode {...props} />
 			</div>
 		</td>
 	);

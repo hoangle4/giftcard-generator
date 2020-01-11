@@ -2,6 +2,7 @@ import { TDAction } from './TDAction';
 
 export const GiftTable = ({ gifts }) => {
 	return (
+	<div>
 		<table className="table">
 			<thead>
 				<tr>
@@ -21,10 +22,11 @@ export const GiftTable = ({ gifts }) => {
 						<td>${gift.value}.00</td>
 						<td>{gift.createdAt}</td>
 						<td>{gift.updatedAt}</td>
-						<TDAction />
+						<TDAction {...gift} />
 					</tr>
 				))}
 			</tbody>
 		</table>
+	</div>
 	);
 };
