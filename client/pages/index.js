@@ -29,9 +29,16 @@ const Home = ({ isAuthenticated, locations, loadUser, getLocations }) => {
 				<hr className="my-4" />
 				<p>We provide free gift card management system for small businesses.</p>
 				{isAuthenticated && (
-					<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-						Add a Location
-					</button>
+					<Fragment>
+						<button
+							type="button"
+							className="btn btn-primary"
+							data-toggle="modal"
+							data-target="#staticBackdrop"
+						>
+							Add a Location
+						</button>
+					</Fragment>
 				)}
 			</div>
 			{locations.length === 0 ? (

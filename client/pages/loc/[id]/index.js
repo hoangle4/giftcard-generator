@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getGifts } from '../../action/gift';
+import { getGifts } from '../../../action/gift';
 import fetch from 'isomorphic-unfetch';
-import AddGiftModal from '../../components/AddGiftModal';
-import { GiftTable } from '../../components/GiftTable';
-
+import AddGiftModal from '../../../components/AddGiftModal';
+import { GiftTable } from '../../../components/GiftTable';
+import Link from 'next/link';
 
 const Loc = ({
 	id,
@@ -41,6 +41,10 @@ const Loc = ({
 				<button type="button" className="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
 					New Gift Certificate
 				</button>
+				<Link href="/loc/[id]/addStatement" as={`/loc/${id}/addStatement`}>
+					<a className="btn btn-secondary text-white">Add a Bi-Weekly Statement</a>
+				</Link>
+
 				<AddGiftModal
 					location={id}
 					businessName={businessName}
