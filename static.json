@@ -1,0 +1,7 @@
+{
+	"routes": {
+		"/app/client/out/*": "/app/client/out/",
+		"/**": "index.html"
+	},
+	"cacheDirectories": [ ".next/cache" ]
+}
