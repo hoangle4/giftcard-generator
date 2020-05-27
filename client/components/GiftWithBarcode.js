@@ -13,14 +13,14 @@ console.log(id.split('-').splice(0,1).join(''))
 		        </button>
 		      </div>
 		      <div className="modal-body">
-		        <div className="card mb-3">
-				    <Barcode value={voucher} width={1} height={75} className="card-img-top"/>
+		        <div className="card mb-3 text-center">
+				    <Barcode value={voucher} width={1} height={75} className="card-img-top text-center"/>
 				  <div className="card-body">
 				    <h5 className="card-title">{businessName}</h5>
 				    <p className="card-text">{address}</p>
 				    <p className="card-text">{city}, {state} {zipcode}</p>
 
-				    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+				    <p className="card-text">Last updated 3 mins ago</p>
 				  </div>
 				</div>
 		      </div>
